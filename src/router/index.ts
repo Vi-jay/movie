@@ -24,5 +24,4 @@ const router =  new Router({
         },
     ]
 });
-initRouterInterceptor(router);
 export default router;

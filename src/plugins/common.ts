@@ -1,9 +1,11 @@
 import {RawLocation} from "vue-router";
 import {DeepFlatten} from "@/utils/tshelper";
 import {Vue} from "vue/types/vue";
+import {getPic} from "@/utils";
 
 const mixin = {
     methods: {
+        getPic,
         hasModifier(defaultClass, modifier, flag) {
             return flag ? `${defaultClass} ${defaultClass}--${modifier}` : defaultClass
         },

@@ -11,8 +11,11 @@ export function getSetWrapper(realName) {
         }
     }
 }
-
-
+export function getPic(w?:number,h?:number) {
+    const PIC = `https://www.lilinfan.com/puzzle/res/raw-assets/5a/5a2aefa0-4564-4b21-8a25-58875e1c070a.e5383.jpg`;
+    if (w||h) return `${PIC}?imageView2/1/w/${w}/h/${h}`;
+    return PIC;
+}
 /***
  * 转换请求时参数中的Date对象
  * @param data
@@ -20,7 +23,6 @@ export function getSetWrapper(realName) {
  */
 export function convertRequestDate(data) {
     const newObj = _.cloneDeep(data);
-
     function closure(obj) {
         _.each(obj, (v, k) => {
             if (!_.isDate(v) && _.isObject(v)) return closure(v);
@@ -29,13 +31,11 @@ export function convertRequestDate(data) {
         });
         return newObj;
     }
-
     return closure(newObj);
 }
-
 export function excludeEmpty(obj, ...keys) {
     return _.reduce(obj, (map, v, k) => {
-        if (keys.includes(k) || (!_.isNumber(v)&&_.isEmpty(v)) ) return map;
+        if (keys.includes(k) || (!_.isNumber(v) && _.isEmpty(v))) return map;
         if (_.isPlainObject(v)) {
             map[k] = excludeEmpty(v);
         } else {
@@ -44,14 +44,12 @@ export function excludeEmpty(obj, ...keys) {
         return map;
     }, {});
 }
-
 export function randomStr() {
     return Math.random().toString(16).substr(2)
 }
-
-export function genFormOptions(labels:string[],addition=0) {
-    return {options:labels.map((label,idx)=>({label,value:idx+addition}))}
+export function genFormOptions(labels: string[], addition = 0) {
+    return {options: labels.map((label, idx) => ({label, value: idx + addition}))}
 }
-export function genSimpleFormOptions(labels:string[]) {
-    return {options:labels.map((label,idx)=>({label,value:label}))}
+export function genSimpleFormOptions(labels: string[]) {
+    return {options: labels.map((label, idx) => ({label, value: label}))}
 }
