@@ -1,0 +1,7 @@
+#测试
+ip:
+  - 47.96.148.245
+username: root
+password: Wzxiong432@
+filePath: dist
+targetPath: /usr/local/nginx/html/baidu/wap

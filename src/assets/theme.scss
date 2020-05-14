@@ -1,0 +1,15 @@
+@import "common";
+@import "animations";
+.vertical-middle {
+  vertical-align: middle;
+}
+.active-able, button {
+  &:active {
+    opacity: .7;
+    transition: opacity .1s;
+  }
+}
+//van hack
+.van-dialog {
+  z-index: 99999 !important;
+}
