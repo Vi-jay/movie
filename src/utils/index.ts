@@ -11,10 +11,8 @@ export function getSetWrapper(realName) {
         }
     }
 }
-export function getPic(w?:number,h?:number) {
-    const PIC = `https://www.lilinfan.com/puzzle/res/raw-assets/5a/5a2aefa0-4564-4b21-8a25-58875e1c070a.e5383.jpg`;
-    if (w||h) return `${PIC}?imageView2/1/w/${w}/h/${h}`;
-    return PIC;
+export function getPic() {
+    return "https://img.xjh.me/random_img.php?return=302";
 }
 /***
  * 转换请求时参数中的Date对象

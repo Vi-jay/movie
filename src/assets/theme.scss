@@ -1,11 +1,18 @@
 @import "common";
 @import "animations";
+body {
+  line-height: 1;
+  font-size: 12px;
+}
+html{
+}
 .vertical-middle {
   vertical-align: middle;
 }
 .active-able, button {
+  user-select: none;
   &:active {
-    opacity: .7;
+    opacity: .9;
     transition: opacity .1s;
   }
 }

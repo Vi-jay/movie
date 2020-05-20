@@ -58,6 +58,9 @@ $themeColor: var(--mainColor);
 @mixin alignCenter {
   @include flex-center($justify: null);
 }
+@mixin alignCenterBt {
+  @include flex-center($justify: space-between);
+}
 /*绝对定位  参数顺序：上右下左*/
 @mixin positionAbsolute($top:null,$right:null,$bottom:null,$left:null) {
   position: absolute;

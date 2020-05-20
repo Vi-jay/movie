@@ -1,29 +1,40 @@
 <template>
     <div id="Index">
-        <search-bar><location-button slot="left"/></search-bar>
+        <search-bar>
+            <location-button slot="left"/>
+        </search-bar>
         <swiper class="c-swipe" :options="swiperOptions">
             <swiper-slide v-for="(pic,k) in swipeList" :key="k">
-                <img class="c-swipe__pic" :src="pic" alt="">
+                <van-image
+                        fit="cover"
+                        width="100%"
+                        radius="6"
+                        height="1.86rem"
+                        :src="randomPic"/>
             </swiper-slide>
         </swiper>
         <section class="c-banner">
             <aside v-for="i in 2" class="c-banner__item">
-                <img class="c-banner__pic" :src="getPic()" alt="">
-                <footer class="banner-foot">
-                    <em class="banner-foot__tip">进去看看</em>
-                    <van-icon name="arrow" />
+                <van-image
+                        fit="cover"
+                        width="100%"
+                        radius="6"
+                        height="100%"
+                        :src="randomPic"/>
+                <footer class="banner-foot active-able">
+                    <span class="banner-foot__tip">进去看看<van-icon class="banner-foot__icon" name="arrow"/></span>
                 </footer>
             </aside>
         </section>
-        <div class="c-segment"></div>
+        <div class="l-segment"></div>
         <movie-info/>
-        <div class="c-segment"></div>
+        <div class="l-segment"></div>
         <recommend/>
     </div>
 </template>
 <script lang="ts">
     import Vue, {ComponentOptions, VueConstructor} from "vue"
-    import {Component} from "vue-property-decorator";
+    import {Component, Prop} from "vue-property-decorator";
     import LocationButton from "@/components/basic/location-button.vue";
     import SearchBar from "@/components/index/search-bar.vue";
     import {Swiper, SwiperSlide} from 'vue-awesome-swiper'
@@ -32,17 +43,17 @@
     import MovieInfo from "@/components/index/movie-info.vue";
     import Recommend from "@/components/index/recommend.vue";
 
-    const swipeList =_.times(3,()=>getPic());
+    const swipeList = _.times(3, () => getPic());
     @Component({
         components: {Recommend, MovieInfo, SearchBar, LocationButton, Swiper, SwiperSlide}
     })
     export default class Index extends Vue implements ComponentOptions<Vue> {
-        swipeList=swipeList;
+        swipeList = swipeList;
         swiperOptions = {
             initialSlide: 1,
             delay: 2000,
             reverseDirection: true,
-            loop:true,
+            loop: false,
             effect: 'coverflow',
             slidesPerView: 1.2, // or 'auto'
             centeredSlides: true,
@@ -62,48 +73,40 @@
 <style scoped lang="scss">
     @import "~assets/common.scss";
     #Index{
-        min-height: 100vh;
-        background: #2C2C35;
-        .c-swipe{
-            &__pic{
-                width:100%;
-                object-fit: cover;
-                height:186px;
-                border-radius: 6px;
-                overflow: hidden;
-            }
-        }
+        min-height:100vh;
+        background:#2C2C35;
         .c-banner{
             @include alignCenter;
-            justify-content: space-between;
-            padding: 15px 10px 7px;
+            justify-content:space-between;
+            padding:15px 10px 7px;
             &__item{
                 width:174px;
                 height:100px;
-                border-radius: 6px;
-                overflow: hidden;
-                position: relative;
-            }
-            &__pic{
-                @include absoluteFull;
-                object-fit: cover;
+                border-radius:6px;
+                overflow:hidden;
+                position:relative;
             }
             .banner-foot{
                 @include absoluteFull;
-                top: auto;
+                top:auto;
                 height:25px;
-                background:rgba(240,133,25,1);
+                background:rgba(240, 133, 25, 1);
                 @include flex-center;
-                color: #FFFFFF;
-                font-size: 14px;
+                color:#FFFFFF;
+                font-size:14px;
                 &__tip{
-                    margin-right: 7px;
+                    position:relative;
+                }
+                &__icon{
+                    right:-5px;
+                    transform: translate(100%,3%);
+                    position:absolute;
                 }
             }
         }
-        .c-segment{
+        .l-segment{
             height:4px;
-            background:rgba(57,57,66,1);
+            background:rgba(57, 57, 66, 1);
         }
     }
 </style>

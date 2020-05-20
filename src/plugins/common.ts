@@ -1,11 +1,20 @@
 import {RawLocation} from "vue-router";
 import {DeepFlatten} from "@/utils/tshelper";
 import {Vue} from "vue/types/vue";
-import {getPic} from "@/utils";
+import { randomStr} from "@/utils";
 
 const mixin = {
+    computed:{
+        randomPic:{
+            cache:true,
+            get() {
+                console.log(3)
+                const random = randomStr();
+                return `https://img.xjh.me/random_img.php?return=302&${random}`;
+            }
+        }
+    },
     methods: {
-        getPic,
         hasModifier(defaultClass, modifier, flag) {
             return flag ? `${defaultClass} ${defaultClass}--${modifier}` : defaultClass
         },

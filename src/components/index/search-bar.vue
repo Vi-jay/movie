@@ -3,10 +3,10 @@
         <slot name="left"/>
         <div class="c-input" :class="{notEmpty:searchText}">
             <aside class="fake-input">
-                <van-icon class="fake-input__icon" size="20" name="search"/>
+                <van-icon class="fake-input__icon" size=".15rem" name="search"/>
                 <em class="fake-input__placeholder">复仇者联盟3</em>
             </aside>
-            <input class="c-input__cmp" v-model="searchText" type="text">
+            <input class="c-input__cmp" style="color: white" v-model="searchText" type="text">
         </div>
     </div>
 </template>
@@ -16,7 +16,7 @@
 
     @Component
     export default class SearchBar extends Vue implements ComponentOptions<Vue> {
-        searchText="";
+        searchText = "";
         name = "SearchBar";
         created() {
         }
@@ -28,7 +28,7 @@
     #SearchBar{
         @include alignCenter;
         justify-content:space-between;
-        padding:8px 18px ;
+        padding:8px 18px;
         .c-input{
             width:263px;
             height:30px;
@@ -39,30 +39,33 @@
                 height:100%;
                 display:inline-block;
                 color:#777777;
-                @include absoluteXCenter;
-                transition: all .2s;
+                transition:all .2s;
+                @include alignCenter;
+                position:absolute;
+                left:50%;
+                margin-left:-60px;
                 &__icon{
                     margin-right:8px;
-                    position:relative;
-                    top:50%;
-                    transform:translateY(-50%);
                 }
             }
-            &:focus-within,&.notEmpty{
+            &:focus-within, &.notEmpty{
                 background:#181717;
                 .fake-input{
-                    left: 10px;
-                    transform: translateX(0);
+                    left:10px;
+                    margin-left:0;
                     &__placeholder{
-                     display: none;
+                        display:none;
                     }
                 }
             }
             &__cmp{
-                all:unset;
+                border:0;
+                outline:0;
                 @include absoluteFull;
-                padding-left:40px;
-                color: white;
+                padding:0 20px 0 40px;
+                color:white;
+                width:100%;
+                box-sizing:border-box;
             }
         }
     }
